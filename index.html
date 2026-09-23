@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#080910">
+<title>FF NAME LAB — مولد أسماء فري فاير الأسطوري</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Orbitron:wght@500;700;800;900&display=swap');
+:root{--bg:#07080e;--panel:rgba(18,19,29,.72);--line:rgba(255,255,255,.10);--text:#fff;--muted:#9da0ad;--fire:#ff6a00;--gold:#ffc247;--glow:rgba(255,106,0,.32)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Cairo,Arial,sans-serif;overflow-x:hidden}
+button,input{font:inherit}button{cursor:pointer}.container{width:min(1160px,92%);margin:auto}
+.video-bg{position:fixed;inset:0;z-index:-5;overflow:hidden;background:radial-gradient(circle at 50% 20%,#25130a 0,#080910 45%,#05050a 100%)}
+.video-bg video{width:100%;height:100%;object-fit:cover;opacity:.34;filter:saturate(1.25) contrast(1.1);transition:opacity .45s ease}.video-bg video.is-switching{opacity:0}
+.local-video-control{position:fixed;top:86px;right:16px;z-index:30;display:flex;gap:8px;align-items:center}.local-video-control label{cursor:pointer;padding:10px 14px;border:1px solid rgba(255,166,0,.45);border-radius:12px;background:rgba(10,10,18,.78);backdrop-filter:blur(10px);color:#fff;font-weight:700;font-size:12px}@media(max-width:560px){.local-video-control{top:74px;right:10px}.local-video-control label{padding:8px 10px;font-size:11px}}
+.video-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,10,.55),rgba(5,5,10,.84) 65%,#07080e 100%)}
+.grid{position:fixed;inset:0;z-index:-3;opacity:.12;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:60px 60px;mask-image:linear-gradient(to bottom,#000,transparent 75%)}
+.spark{position:fixed;width:4px;height:4px;border-radius:50%;background:#ff9b32;box-shadow:0 0 16px #ff6a00;z-index:-1;animation:float linear infinite;opacity:.7}
+@keyframes float{from{transform:translateY(110vh) translateX(0);opacity:0}15%{opacity:.8}to{transform:translateY(-15vh) translateX(80px);opacity:0}}
+nav{position:fixed;top:0;left:0;right:0;height:76px;z-index:20;display:flex;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(5,6,11,.55);backdrop-filter:blur(18px)}
+.navin{display:flex;align-items:center;justify-content:space-between}.brand{font-family:Orbitron,sans-serif;font-weight:900;letter-spacing:2px}.brand span{color:var(--fire)}.navlinks{display:flex;gap:24px;color:#c9cad0;font-size:14px}.navlinks a{color:inherit;text-decoration:none}.navlinks a:hover{color:#fff}
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 70px;text-align:center}.hero-inner{max-width:900px;margin:auto}.eyebrow{display:inline-flex;gap:9px;align-items:center;padding:8px 14px;border:1px solid rgba(255,161,65,.25);border-radius:999px;background:rgba(255,106,0,.08);color:#ffc27c;font-size:12px;font-weight:800;letter-spacing:.5px}.dot{width:7px;height:7px;border-radius:50%;background:var(--fire);box-shadow:0 0 14px var(--fire)}
+h1{font-size:clamp(42px,8vw,86px);line-height:1.02;margin:24px 0 16px;font-weight:900;letter-spacing:-3px}.firetext{background:linear-gradient(90deg,#fff,#ffc247 38%,#ff6a00 75%,#ffad45);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 35px rgba(255,106,0,.18)}.hero p{color:#b8bac5;font-size:clamp(15px,2vw,20px);margin:0 auto 30px;max-width:650px}.hero-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.btn{border:1px solid var(--line);border-radius:14px;padding:13px 22px;background:rgba(255,255,255,.06);color:#fff;font-weight:800;transition:.2s}.btn:hover{transform:translateY(-2px);border-color:rgba(255,174,76,.4)}.btn.primary{background:linear-gradient(135deg,#ff7a00,#ff4d00);border:0;box-shadow:0 10px 35px var(--glow)}
+.stats{display:flex;justify-content:center;gap:34px;margin-top:45px;color:#9da0ad;font-size:11px}.stats b{display:block;color:#fff;font-family:Orbitron;font-size:16px;margin-bottom:3px}
+section{padding:55px 0}.section-head{text-align:center;margin-bottom:25px}.section-head .tag{color:#ff9b4a;font-size:12px;font-weight:900;letter-spacing:1px}.section-head h2{font-size:clamp(28px,4vw,44px);margin:7px 0;font-weight:900}.section-head p{margin:0;color:var(--muted)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:28px;padding:24px;box-shadow:0 25px 80px rgba(0,0,0,.25);backdrop-filter:blur(22px)}
+.generator{max-width:950px;margin:auto}.input-row{display:flex;gap:10px}.name-input{flex:1;background:#0d0e16;border:1px solid #252733;color:#fff;border-radius:16px;padding:18px 20px;outline:0;direction:auto;font-size:19px}.name-input:focus{border-color:#ff7929;box-shadow:0 0 0 4px rgba(255,106,0,.08)}.counter{font-size:11px;color:#777b88;margin-top:7px}.counter.warn{color:#ff7a29}
+.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0 10px}.chip{padding:9px 13px;border-radius:999px;background:#10111a;border:1px solid #252733;color:#c8cad2;font-size:12px;font-weight:800}.chip.active,.chip:hover{border-color:#ff7425;color:#fff;background:rgba(255,106,0,.12)}
+.symbols{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.symbol{min-width:43px;height:38px;padding:0 9px;border-radius:10px;background:#0d0e16;border:1px solid #232530;color:#fff;font-size:17px}.symbol:hover{border-color:#ff7425;transform:translateY(-1px)}
+.preview{margin:22px 0;padding:28px 18px;text-align:center;border-radius:22px;background:radial-gradient(circle,#24140a 0,#0c0d14 55%);border:1px solid rgba(255,122,37,.16)}.preview small{display:block;color:#777b88;font-size:10px;letter-spacing:1px;margin-bottom:9px}.preview-name{font-size:clamp(26px,6vw,48px);font-weight:900;word-break:break-word;direction:auto;min-height:55px}.result-actions{display:flex;justify-content:center;gap:9px;margin-top:15px}.copy{background:#fff;color:#08090e;border:0;border-radius:12px;padding:10px 18px;font-weight:900}.ghost{background:#12131c;color:#fff;border:1px solid #292b36;border-radius:12px;padding:10px 18px;font-weight:800}
+.results{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.result{display:flex;align-items:center;gap:9px;padding:14px;background:#0d0e16;border:1px solid #20222c;border-radius:14px}.result .txt{flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;direction:auto}.mini{border:1px solid #292b36;background:#151621;color:#fff;border-radius:9px;padding:7px 10px;font-size:11px}.mini:hover{border-color:#ff7425}
+.categories{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.cat{position:relative;min-height:105px;padding:16px;text-align:right;border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.025));border:1px solid var(--line);overflow:hidden;transition:.25s}.cat:hover{transform:translateY(-4px);border-color:rgba(255,122,37,.45)}.cat b{font-size:16px}.cat span{display:block;color:#858895;font-size:11px;margin-top:4px}.cat i{position:absolute;left:12px;bottom:6px;font-style:normal;font-size:35px;opacity:.22}
+.char-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.char{position:relative;min-height:175px;border-radius:20px;padding:12px;display:flex;align-items:flex-end;overflow:hidden;background:linear-gradient(160deg,#1c1d29,#0c0d13);border:1px solid var(--line);transition:.25s}.char:hover{transform:translateY(-5px) rotate(-1deg);border-color:rgba(255,122,37,.5);box-shadow:0 18px 35px rgba(0,0,0,.3)}.sticker{position:absolute;inset:10px 10px 42px;border-radius:16px;background:radial-gradient(circle at 50% 20%,rgba(255,130,35,.28),transparent 52%),linear-gradient(135deg,rgba(255,255,255,.1),rgba(255,255,255,.01));border:1px dashed rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center}.avatar{font-size:58px;filter:drop-shadow(0 10px 15px #000)}.char b{position:relative;font-family:Orbitron;font-size:12px}.char small{position:absolute;bottom:12px;left:12px;color:#777b88;font-size:9px}
+.footer{padding:50px 0 70px;text-align:center;color:#777b88;font-size:12px}.footer strong{color:#fff}.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;background:#fff;color:#08090e;padding:10px 16px;border-radius:12px;font-weight:900;font-size:12px;z-index:50;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}
+
+.brand em{font-style:normal;font-size:8px;letter-spacing:1px;color:#ffad62;border:1px solid rgba(255,140,50,.3);padding:3px 5px;border-radius:5px;margin-right:5px;vertical-align:middle}
+.advanced{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0;color:#a7a9b4;font-size:11px}
+.toggle{display:flex;align-items:center;gap:7px;cursor:pointer;background:#0d0e16;border:1px solid #232530;border-radius:10px;padding:8px 10px}
+.toggle input{display:none}.toggle span{width:27px;height:15px;background:#30323d;border-radius:999px;position:relative}.toggle span:after{content:"";width:11px;height:11px;position:absolute;top:2px;right:2px;background:#777;border-radius:50%;transition:.2s}
+.toggle input:checked+span{background:#7a3510}.toggle input:checked+span:after{right:14px;background:#ff7a25}
+.mini.wide{padding:8px 12px}
+.trending-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.trend{padding:16px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));border-radius:17px;min-height:110px;display:flex;flex-direction:column;justify-content:space-between}
+.trend .tname{font-weight:900;font-size:18px;direction:auto;word-break:break-word}.trend .meta{display:flex;align-items:center;justify-content:space-between;color:#777b88;font-size:10px}.trend button{border:1px solid #2b2d38;background:#11121b;color:#fff;border-radius:8px;padding:6px 9px;font-size:10px}
+.trend button:hover{border-color:#ff7425}
+.empty{grid-column:1/-1;text-align:center;color:#777b88;padding:30px}
+@media(max-width:850px){.trending-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.trending-grid{grid-template-columns:1fr}.advanced{align-items:stretch}.toggle,.mini.wide{flex:1;justify-content:center}}
+
+@media(max-width:850px){.categories{grid-template-columns:repeat(3,1fr)}.char-grid{grid-template-columns:repeat(3,1fr)}.navlinks{display:none}}
+@media(max-width:560px){nav{height:64px}.hero{padding-top:95px}.stats{gap:18px}.stats b{font-size:13px}.panel{padding:15px;border-radius:20px}.input-row{flex-direction:column}.input-row .btn{width:100%}.results{grid-template-columns:1fr}.categories{grid-template-columns:repeat(2,1fr)}.char-grid{grid-template-columns:repeat(2,1fr)}.char{min-height:160px}}
+</style>
+</head>
+<body>
+<div class="video-bg">
+  <!-- ضع battle1.mp4 إلى battle10.mp4 داخل مجلد assets. -->
+  <video id="backgroundVideo" autoplay muted playsinline webkit-playsinline preload="none" poster="assets/hero-poster.svg" aria-label="خلفية فيديو فري فاير"></video>
+</div>
+<div class="local-video-control">
+  <label for="videoPicker">🎬 اختر فيديو من هاتفك</label>
+  <input id="videoPicker" type="file" accept="video/mp4,video/*" style="display:none">
+</div>
+<div class="grid"></div>
+<div id="sparks"></div>
+
+<nav><div class="container navin">
+  <div class="brand">FF <span>NAME</span> LAB <em>PRO</em></div>
+  <div class="navlinks"><a href="#generator">المولد</a><a href="#trending">الرائج</a><a href="#categories">الفئات</a><a href="#characters">الشخصيات</a><a href="#symbols">الرموز</a><a href="#favorites">المفضلة</a></div>
+  <button class="btn primary" onclick="document.querySelector('#generator').scrollIntoView({behavior:'smooth'})">ابدأ الآن</button>
+</div></nav>
+
+<header class="hero">
+<div class="container hero-inner">
+  <div class="eyebrow"><span class="dot"></span> FREE FIRE NAME GENERATOR • 2026</div>
+  <h1>مولّد أسماء فري فاير<br><span class="firetext">الأسطوري</span></h1>
+  <p>اكتب اسمك، اختر أسلوبك، أضف الرموز التي تريدها، ثم انسخ اسمك الجاهز في ثوانٍ.</p>
+  <div class="hero-actions"><button class="btn primary" onclick="document.querySelector('#generator').scrollIntoView({behavior:'smooth'})">🔥 اصنع اسمي</button><button class="btn" onclick="randomName()">🎲 اسم عشوائي</button></div>
+  <div class="stats"><div><b>AR + EN</b>لغتان</div><div><b>80+</b>رمز وزخرفة</div><div><b>1 TAP</b>نسخ سريع</div></div>
+</div>
+</header>
+
+<section id="generator">
+<div class="container">
+<div class="section-head"><div class="tag">NAME LAB</div><h2>اصنع هويتك داخل اللعبة</h2><p>ابدأ باسم عادي وحوّله إلى Nickname مميز.</p></div>
+<div class="panel generator">
+  <div class="input-row"><input id="name" class="name-input" maxlength="20" value="Lamine" placeholder="اكتب اسمك هنا..." oninput="render()"><button class="btn primary" onclick="generate()">⚡ توليد 8 أسماء</button></div>
+  <div id="counter" class="counter">6 / 20</div>
+  <div class="toolbar" id="styles"></div>
+  <div class="advanced">
+    <label class="toggle"><input id="safeMode" type="checkbox" checked onchange="generate()"><span></span> وضع آمن للرموز</label>
+    <label class="toggle"><input id="numbers" type="checkbox" onchange="generate()"><span></span> أضف أرقامًا</label>
+    <button class="mini wide" onclick="shuffleStyle()">🔀 تبديل الستايل</button>
+  </div>
+  <div class="preview"><small>LIVE PREVIEW</small><div id="previewName" class="preview-name">꧁Lamine꧂</div><div class="result-actions"><button class="copy" onclick="copyText(current)">📋 نسخ الاسم</button><button class="ghost" onclick="saveNameImage(current)">🖼️ حفظ / مشاركة PNG</button><button class="ghost" onclick="toggleFavorite(current)">♡ المفضلة</button></div></div>
+  <div id="results" class="results"></div>
+</div>
+</div>
+</section>
+
+<section id="categories">
+<div class="container">
+<div class="section-head"><div class="tag">CHOOSE YOUR VIBE</div><h2>ولّد حسب شخصيتك</h2><p>اضغط فئة وسنركّب لك أسماء تناسبها.</p></div>
+<div class="categories" id="cats"></div>
+</div>
+</section>
+
+<section id="trending">
+<div class="container">
+<div class="section-head"><div class="tag">TRENDING NOW</div><h2>أسماء جاهزة للرائج</h2><p>أفكار مستوحاة من أنماط الأسماء المتداولة، قابلة للتعديل والنسخ.</p></div>
+<div class="trending-grid" id="trendingGrid"></div>
+</div>
+</section>
+
+<section id="favorites">
+<div class="container">
+<div class="section-head"><div class="tag">YOUR VAULT</div><h2>خزنة المفضلة</h2><p>الأسماء التي تحفظها تبقى على جهازك حتى تعود إليها لاحقًا.</p></div>
+<div class="panel"><div class="results" id="favoritesGrid"></div></div>
+</div>
+</section>
+
+<section id="symbols">
+<div class="container">
+<div class="section-head"><div class="tag">SYMBOL KIT</div><h2>مختبر الرموز</h2><p>اضغط أي رمز لإضافته إلى الاسم في مكان المؤشر.</p></div>
+<div class="panel"><div class="symbols" id="symbolsBox"></div></div>
+</div>
+</section>
+
+<section id="characters">
+<div class="container">
+<div class="section-head"><div class="tag">CHOOSE YOUR CHARACTER</div><h2>شخصيات فري فاير</h2><p>اختر الشخصية لتوليد أسماء مستوحاة من طابعها.</p></div>
+<div class="char-grid" id="chars"></div>
+</div>
+</section>
+
+<footer class="footer"><div class="container"><strong>FF NAME LAB</strong><br>أداة مستقلة لتوليد وتنسيق أسماء الألعاب. Free Fire وGarena علامتان تجاريتان لأصحابهما.</div></footer>
+<div id="toast" class="toast">تم النسخ ✓</div>
+
+<script>
+const symbols="★ ☆ ✦ ✧ ✩ ✪ ✫ ✬ ✭ ✮ ✯ ✰ ♛ ♚ ⚡ ☠ ♠ ♥ ♡ ❤ ❥ ❣ ❦ ♦ ♣ ✿ ❀ ⚜ ☯ ☾ ☽ 々 么 メ ツ 乂 亗 〆 ࿐ 彡 ミ 爪 丂 ㄒ ㅅ ㆍ ۝ ☜ ☞ » « 〗 〖 》 《 ⌈ ⌉ • ◦ ∘ ღ 忍 弐 之 刃 龍 虎 漢 武 士".split(" ");
+const safeSymbols=["★","☆","✦","✧","✪","♛","♚","⚡","☠","♠","♥","♡","❤","❥","♦","♣","✿","❀","☯","☾","々","么","メ","ツ","乂","亗","〆","࿐","彡","ミ","•","◦","ღ","☜","☞","»","«","〗","〖","》","《"];
+const styles=[
+["꧁NAME꧂",x=>"꧁"+x+"꧂"],["『NAME』",x=>"『 "+x+" 』"],["亗 NAME 亗",x=>"亗 "+x+" 亗"],["★彡NAME彡★",x=>"★彡"+x+"彡★"],["乂 NAME 乂",x=>"乂 "+x+" 乂"],["༺NAME༻",x=>"༺"+x+"༻"],["⚡ NAME ⚡",x=>"⚡ "+x+" ⚡"],["☠ NAME ☠",x=>"☠ "+x+" ☠"],["♛ NAME 亗",x=>"♛ "+x+" 亗"],["『NAME』ツ",x=>"『"+x+"』ツ"]];
+const categories=[
+["👑","أسطوري","LEGEND","LEGEND"],["⚡","محترف","PRO","PRO"],["☠","مخيف","DEMON","DEMON"],["🔥","ناري","BLAZE","BLAZE"],["💎","فخم","ROYAL","ROYAL"],
+["🥶","بارد","FROST","FROST"],["🌑","غامض","SHADOW","SHADOW"],["💗","كيوت","BUNNY","BUNNY"],["🎯","قناص","SNIPER","SNIPER"],["🥷","نينجا","RONIN","RONIN"]
+];
+const chars=[
+["Ray","The Watchman","🕶️","WATCH"],["Morse","The Untraceable","🎭","GHOST"],["Nero","Dreamsmith","🧥","DREAM"],["Rin","Jade Ninja","🥷","NINJA"],["Oscar","Night Vigilante","🦾","NIGHT"],["Kassie","Doctor Maniac","🧪","TOXIC"],
+["Kairos","Dual Guardian","⚔️","GUARD"],["Ryden","Inventive Genius","🤖","CYBER"],["Ignis","Untamed Flame","🔥","FIRE"],["Suzy","Shadow Assassin","🗡️","ASSASSIN"],["Sonia","Nano Scientist","🧬","NANO"],["Orion","Fist of Vengeance","👊","RAGE"]
+];
+const vocab={
+LEGEND:["LEGEND","EMPEROR","KING","TITAN","ROYAL","ACE","MYTH","NOVA"],
+PRO:["PRO","MVP","ACE","CLUTCH","AIM","RUSH","ELITE","RANK"],
+DEMON:["DEMON","REAPER","KILLER","TOXIC","DOOM","HELL","VENOM","FURY"],
+BLAZE:["BLAZE","FLAME","INFERNO","FIRE","BURN","EMBER","PYRO","HEAT"],
+ROYAL:["ROYAL","CROWN","LORD","VIP","EMPIRE","PRIME","BOSS","KING"],
+FROST:["FROST","ICE","ZERO","ARCTIC","CHILL","SNOW","GLACIER","COLD"],
+SHADOW:["SHADOW","VOID","DARK","GHOST","PHANTOM","NIGHT","ECLIPSE","SILENT"],
+BUNNY:["BUNNY","LILY","BABY","MIMI","SWEET","PEACH","KISS","PINK"],
+SNIPER:["SNIPER","HAWK","AIM","HEADSHOT","SCOPE","ONE TAP","RIFLE","EAGLE"],
+RONIN:["RONIN","SHINOBI","SAMURAI","KAGE","NINJA","KATANA","RYU","BUSHIDO"],
+WATCH:["WATCH","SENTINEL","GUARD","EYE","SCOUT","VIGIL"],
+GHOST:["GHOST","UNTRACE","PHANTOM","SPECTER","SILENT"],
+DREAM:["DREAM","VISION","LUCID","MYSTIC","DREAMER"],
+NINJA:["NINJA","KAGE","SHINOBI","RONIN","STEALTH"],
+NIGHT:["NIGHT","VIGIL","NOIR","DARK","MIDNIGHT"],
+TOXIC:["TOXIC","VENOM","ACID","POISON","CHAOS"],
+GUARD:["GUARD","DUAL","AEGIS","TITAN","SHIELD"],
+CYBER:["CYBER","BYTE","NEXUS","TECH","GLITCH"],
+FIRE:["FIRE","IGNITE","BLAZE","PYRO","EMBER"],
+ASSASSIN:["ASSASSIN","SILENT","BLADE","GHOST","SHADOW"],
+NANO:["NANO","ATOM","QUANTUM","NEON","CORE"],
+RAGE:["RAGE","WRATH","FURY","VENGEANCE","RIOT"]
+};
+let current="꧁Lamine꧂", activeStyle=0;
+
+function makeSparks(){for(let i=0;i<32;i++){let s=document.createElement("i");s.className="spark";s.style.left=Math.random()*100+"vw";s.style.animationDuration=(5+Math.random()*8)+"s";s.style.animationDelay=(-Math.random()*10)+"s";s.style.transform=`scale(${.4+Math.random()*1.5})`;document.getElementById("sparks").appendChild(s)}}
+function renderStyles(){styles.forEach((s,i)=>{let b=document.createElement("button");b.className="chip"+(i===0?" active":"");b.textContent=s[0];b.onclick=()=>{activeStyle=i;document.querySelectorAll("#styles .chip").forEach(x=>x.classList.remove("active"));b.classList.add("active");render()};document.getElementById("styles").appendChild(b)})}
+function renderSymbols(){symbols.forEach(s=>{let b=document.createElement("button");b.className="symbol";b.textContent=s;b.onclick=()=>insertAtCursor(s);document.getElementById("symbolsBox").appendChild(b)})}
+function renderCats(){categories.forEach(c=>{let d=document.createElement("button");d.className="cat";d.innerHTML=`<b>${c[0]} ${c[1]}</b><span>${c[2]}</span><i>${c[0]}</i>`;d.onclick=()=>category(c[3]);document.getElementById("cats").appendChild(d)})}
+function renderChars(){chars.forEach(c=>{let d=document.createElement("button");d.className="char";d.innerHTML=`<div class="sticker"><div class="avatar">${c[2]}</div></div><b>${c[0]}</b><small>${c[1]}</small>`;d.onclick=()=>category(c[3]);document.getElementById("chars").appendChild(d)})}
+function render(){let n=(document.getElementById("name").value||"Lamine").trim();current=styles[activeStyle][1](n);document.getElementById("previewName").textContent=current;document.getElementById("counter").textContent=n.length+" / 12";document.getElementById("counter").classList.toggle("warn",n.length>10)}
+function variants(base, seed=""){
+ let n=base||"Lamine", safe=document.getElementById("safeMode")?.checked!==false, addNum=document.getElementById("numbers")?.checked;
+ let list=styles.map(s=>s[1](n));
+ let syms=safe?safeSymbols:symbols;
+ for(let i=0;i<4;i++){let l=syms[Math.floor(Math.random()*syms.length)],r=syms[Math.floor(Math.random()*syms.length)];list.push(`${l}${n}${r}`)}
+ if(addNum){let num=Math.floor(7+Math.random()*93);list.push(`${n}${num}`,`${n}_${num}`)}
+ return [...new Set(list)].filter(Boolean).slice(0,8);
+}
+function generate(){
+ let n=(document.getElementById("name").value||"Lamine").trim();
+ let arr=variants(n);
+ document.getElementById("results").innerHTML=arr.map(x=>`<div class="result"><span class="txt">${escapeHtml(x)}</span><button class="mini" onclick='copyText(${JSON.stringify(x)})'>نسخ</button></div>`).join("");
+ render();
+}
+function category(seed){
+ let word=(vocab[seed]||[seed])[Math.floor(Math.random()*(vocab[seed]?.length||1))];
+ document.getElementById("name").value=word;
+ activeStyle=Math.floor(Math.random()*styles.length);
+ document.querySelectorAll("#styles .chip").forEach((x,i)=>x.classList.toggle("active",i===activeStyle));
+ generate();document.querySelector("#generator").scrollIntoView({behavior:"smooth",block:"center"});
+}
+function randomName(){
+ const pool=["LEGEND","SHADOW","REAPER","VENOM","BLAZE","FROST","PHANTOM","RONIN","GHOST","NOVA","RAGE","VIPER","DEMON","VOID","STORM","FALCON","ACE","ROYAL"];
+ document.getElementById("name").value=pool[Math.floor(Math.random()*pool.length)];
+ activeStyle=Math.floor(Math.random()*styles.length);
+ document.querySelectorAll("#styles .chip").forEach((x,i)=>x.classList.toggle("active",i===activeStyle));
+ generate();document.querySelector("#generator").scrollIntoView({behavior:"smooth"});
+}
+function shuffleStyle(){activeStyle=Math.floor(Math.random()*styles.length);document.querySelectorAll("#styles .chip").forEach((x,i)=>x.classList.toggle("active",i===activeStyle));render();generate()}
+function insertAtCursor(txt){const el=document.getElementById("name"),start=el.selectionStart??el.value.length,end=el.selectionEnd??el.value.length;el.value=el.value.slice(0,start)+txt+el.value.slice(end);el.focus();el.selectionStart=el.selectionEnd=start+txt.length;render()}
+async function copyText(t){try{await navigator.clipboard.writeText(t)}catch(e){const ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove()}showToast("تم النسخ ✓")}
+async function saveNameImage(name){
+  const size=1080,canvas=document.createElement("canvas"),ctx=canvas.getContext("2d");
+  canvas.width=canvas.height=size;
+  if(document.fonts&&document.fonts.ready) await document.fonts.ready;
+  const bg=ctx.createRadialGradient(540,260,40,540,540,900);bg.addColorStop(0,"#4c210c");bg.addColorStop(.48,"#17101a");bg.addColorStop(1,"#07080e");ctx.fillStyle=bg;ctx.fillRect(0,0,size,size);
+  ctx.strokeStyle="rgba(255,194,71,.22)";ctx.lineWidth=3;ctx.strokeRect(42,42,size-84,size-84);
+  ctx.fillStyle="#ff9b32";ctx.font="800 30px Cairo, Arial, sans-serif";ctx.textAlign="center";ctx.fillText("FF NAME LAB",540,185);
+  ctx.fillStyle="rgba(255,255,255,.58)";ctx.font="600 21px Cairo, Arial, sans-serif";ctx.fillText("FREE FIRE NAME GENERATOR",540,225);
+  let fontSize=104;ctx.font=`900 ${fontSize}px Cairo, Arial, sans-serif`;
+  while(ctx.measureText(name).width>840&&fontSize>42){fontSize-=4;ctx.font=`900 ${fontSize}px Cairo, Arial, sans-serif`}
+  ctx.shadowColor="#ff6a00";ctx.shadowBlur=30;ctx.fillStyle="#fff";ctx.fillText(name,540,555);ctx.shadowBlur=0;
+  ctx.fillStyle="#ffc247";ctx.font="700 23px Cairo, Arial, sans-serif";ctx.fillText("اصنع اسمك وشارك هويتك",540,875);
+  const blob=await new Promise(resolve=>canvas.toBlob(resolve,"image/png"));
+  if(!blob){showToast("تعذر إنشاء الصورة");return}
+  const file=new File([blob],"ff-name-lab.png",{type:"image/png"});
+  try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:"FF NAME LAB",text:name});showToast("اختر TikTok أو Instagram للمشاركة");return}}catch(error){if(error.name==="AbortError")return}
+  const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="ff-name-lab.png";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);showToast("تم حفظ صورة PNG ✓");
+}
+function showToast(msg="تم النسخ ✓"){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1500)}
+function toggleFavorite(t){let f=JSON.parse(localStorage.getItem("ffFavorites")||"[]");if(!f.includes(t))f.unshift(t);if(f.length>30)f=f.slice(0,30);localStorage.setItem("ffFavorites",JSON.stringify(f));showToast("أضيف إلى المفضلة ♥");renderFavorites()}
+function renderFavorites(){let f=JSON.parse(localStorage.getItem("ffFavorites")||"[]"),box=document.getElementById("favoritesGrid");if(!f.length){box.innerHTML='<div class="empty">لم تحفظ أسماء بعد — اضغط ♡ بجانب أي اسم ليظهر هنا.</div>';return}box.innerHTML=f.map(x=>`<div class="result"><span class="txt">${escapeHtml(x)}</span><button class="mini" onclick='copyText(${JSON.stringify(x)})'>نسخ</button></div>`).join("")}
+function renderTrending(){
+ const seeds=["Shadow","Legend","Venom","BLAZE","Frost","Ronin","Reaper","Royal","Ghost","Sniper","NOVA","Demon"];
+ let box=document.getElementById("trendingGrid");
+ box.innerHTML=seeds.map((x,i)=>{let st=styles[i%styles.length][1](x);return `<div class="trend"><div class="tname">${escapeHtml(st)}</div><div class="meta"><span>${i%2?"⚡ PRO":"🔥 TRENDING"}</span><button onclick='copyText(${JSON.stringify(st)})'>📋 نسخ</button></div></div>`}).join("");
+}
+function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+makeSparks();renderStyles();renderSymbols();renderCats();renderChars();renderTrending();renderFavorites();render();generate();
+</script>
+
+<script>
+/* خلفية الفيديو: متوافقة مع Safari على iPhone وChrome على Android قدر الإمكان. */
+(() => {
+  const video = document.getElementById('backgroundVideo');
+  const picker = document.getElementById('videoPicker');
+  const playlist = Array.from({ length: 10 }, (_, i) => `assets/battle${i + 1}.mp4`);
+  let remaining = [];
+  let currentUrl = '';
+  let objectUrl = '';
+  let changing = false;
+  let failedAttempts = 0;
+
+  // تعيين الخصائص برمجيًا مهم في Safari، إضافة إلى خصائص HTML أعلاه.
+  video.muted = true;
+  video.defaultMuted = true;
+  video.autoplay = true;
+  video.playsInline = true;
+  video.setAttribute('muted', '');
+  video.setAttribute('playsinline', '');
+  video.setAttribute('webkit-playsinline', '');
+
+  function resetPlaylist() {
+    remaining = playlist.slice().sort(() => Math.random() - .5);
+  }
+
+  function playSilently() {
+    video.muted = true;
+    const promise = video.play();
+    if (promise) promise.catch(() => {
+      // بعض الأجهزة لا تسمح إلا بعد أول لمسة؛ يعاد التشغيل عند أول تفاعل أدناه.
+    });
+  }
+
+  function loadNext() {
+    if (!remaining.length) resetPlaylist();
+    const next = remaining.shift();
+    if (!next) return;
+    changing = true;
+    video.classList.add('is-switching');
+    video.pause();
+    video.removeAttribute('src');
+    video.src = next;
+    currentUrl = next;
+    video.load();
+  }
+
+  video.addEventListener('canplay', () => {
+    changing = false;
+    failedAttempts = 0;
+    playSilently();
+    requestAnimationFrame(() => video.classList.remove('is-switching'));
+  });
+
+  video.addEventListener('ended', () => {
+    if (!objectUrl) loadNext();
+    else { video.currentTime = 0; playSilently(); }
+  });
+
+  video.addEventListener('error', () => {
+    // ملف غير موجود أو غير مدعوم: انتقل تلقائيًا إلى الملف التالي.
+    if (!objectUrl && currentUrl) {
+      failedAttempts += 1;
+      if (failedAttempts < playlist.length) setTimeout(loadNext, 120);
+      else {
+        // لا تعاود طلب الملفات المفقودة بلا نهاية؛ اترك poster ظاهرًا.
+        video.removeAttribute('src');
+        video.load();
+        currentUrl = '';
+        video.classList.remove('is-switching');
+      }
+    }
+  });
+
+  // اجعل أي لمسة/نقرة أولى فرصة إضافية لتشغيل الفيديو إذا حجب autoplay.
+  ['pointerdown', 'touchstart', 'keydown'].forEach(eventName => {
+    document.addEventListener(eventName, () => {
+      if (video.paused && video.src) playSilently();
+    }, { once: true, passive: true });
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && video.paused && video.src) playSilently();
+  });
+
+  picker.addEventListener('change', event => {
+    const file = event.target.files && event.target.files[0];
+    if (!file || !file.type.startsWith('video/')) return;
+    if (objectUrl) URL.revokeObjectURL(objectUrl);
+    objectUrl = URL.createObjectURL(file);
+    currentUrl = objectUrl;
+    video.classList.add('is-switching');
+    video.pause();
+    video.src = objectUrl;
+    video.load();
+  });
+
+  resetPlaylist();
+  loadNext();
+})();
+</script>
+
+</body>
+</html>
